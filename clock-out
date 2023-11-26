@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+import os
+import sys
+from datetime import datetime
+
+arg = sys.argv[1]
+now = datetime.now()
+job_file = open(
+    os.path.join(
+        "/home/ryott/.config/timecard",
+        "timeCard_{}.log".format(arg)
+    ),
+    "a+",
+)
+job_file.write("Clocked Out: {}\n".format(now.strftime("%Y-%m-%d %H:%M:%S")))
+job_file.write("\n")
+job_file.close()
+
+print(f"You have clocked out for {arg}!")
+
+def read_last_three_lines(file_path):
+    with open(file_path, 'r') as file:
+        # Move the file cursor to the end
+        file.seek(0, 2)
+        
+        # Get the file size
+        file_size = file.tell()
+
+        # Initialize variables to keep track of the current position and the number of lines read
+        current_position = file_size
+        lines_to_read = 4
+        lines = []
+
+        # Continue reading lines until you have read the last three lines or reached the beginning of the file
+        while current_position > 0 and lines_to_read > 0:
+            current_position -= 1
+            file.seek(current_position)
+            char = file.read(1)
+
+            if char == '\n':
+                lines_to_read -= 1
+                lines.insert(0, file.readline().strip())
+
+        return lines
+
+file_path = f"/home/ryott/.config/timecard/timeCard_{arg}.log"
+last_lines = read_last_three_lines(file_path)
+
+clock_in_string = last_lines[0]
+clock_out_string = last_lines[1]
+
+clock_in = datetime.strptime(clock_in_string[12:], '%Y-%m-%d %H:%M:%S')
+clock_out = datetime.strptime(clock_out_string[13:], '%Y-%m-%d %H:%M:%S')
+
+time_worked = clock_out - clock_in
+date = datetime.now().strftime("%Y-%m-%d")
+
+hours_file = open(f"/home/ryott/.config/timecard/hours_{arg}.log","a+")
+hours_file.write(f"Hours Worked {date}: \n{time_worked}\n\n")
+hours_file.close()
+
