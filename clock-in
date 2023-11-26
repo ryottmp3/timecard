@@ -7,10 +7,7 @@ import os
 arg = sys.argv[1]
 now = datetime.now()
 job_file = open(
-    os.path.join(
-        "/home/ryott/.config/timecard",
-        "timeCard_{}.log".format(arg)
-    ),
+    os.path.expanduser(f"~/.config/timecard/timeCard_{arg}.log"),
     "a",
 )
 job_file.write("Clocked In: {}\n".format(now.strftime("%Y-%m-%d %H:%M:%S")))

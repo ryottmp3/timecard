@@ -6,11 +6,8 @@ from datetime import datetime
 arg = sys.argv[1]
 now = datetime.now()
 job_file = open(
-    os.path.join(
-        "/home/ryott/.config/timecard",
-        "timeCard_{}.log".format(arg)
-    ),
-    "a+",
+    os.path.expanduser(f"~/.config/timecard/timeCard_{arg}.log"),
+    "a+"
 )
 job_file.write("Clocked Out: {}\n".format(now.strftime("%Y-%m-%d %H:%M:%S")))
 job_file.write("\n")
@@ -43,7 +40,7 @@ def read_last_three_lines(file_path):
 
         return lines
 
-file_path = f"/home/ryott/.config/timecard/timeCard_{arg}.log"
+file_path = os.path.expanduser(f"~/.config/timecard/timeCard_{arg}.log")
 last_lines = read_last_three_lines(file_path)
 
 clock_in_string = last_lines[0]
@@ -55,7 +52,7 @@ clock_out = datetime.strptime(clock_out_string[13:], '%Y-%m-%d %H:%M:%S')
 time_worked = clock_out - clock_in
 date = datetime.now().strftime("%Y-%m-%d")
 
-hours_file = open(f"/home/ryott/.config/timecard/hours_{arg}.log","a+")
+hours_file = open(os.path.expanduser(f"~/.config/timecard/hours_{arg}.log"),"a+")
 hours_file.write(f"Hours Worked {date}: \n{time_worked}\n\n")
 hours_file.close()
 
