@@ -17,7 +17,7 @@ I created this simple CLI utility based on Python 3 in order to do just that!
 In your command line, type $`clock-in` followed by the keyword you want to represent your job
 
 ### CLOCKING OUT
-In your command line, type $`clock-in` followed by the keyword you want to represent your job
+In your command line, type $`clock-out` followed by the keyword you want to represent your job
 
 ### CHECKING YOUR HOURS
 Your hours should be located at `~/.config/timecard/hours_<JOB NAME>.log`
