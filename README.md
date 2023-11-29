@@ -13,51 +13,49 @@ It allows you to clock in and out for different jobs, maintains a log of your wo
 
 - **Show Hours:** View the total hours worked for the last N calendar days using the `timecard show-hours` command.
 
-- **Systemd Integration:** Prevent the computer from shutting down if a job has not clocked out using a systemd user service.
-
 ## Installation
 
 1. Clone the repository:
 
-    ```$
-    git clone https://github.com/your-username/timecard.git
-    ```$
+    ```
+    $ git clone https://github.com/your-username/timecard.git
+    ```
 
 2. Navigate to the `timecard` directory:
 
-    ```$
-    cd timecard
-    ```$
+    ```
+    $ cd timecard
+    ```
 
 3. Make the `timecard.py` script executable:
 
-    ```$
-    chmod +x timecard.py
-    ```$
+    ```
+    $ chmod +x timecard.py
+    ```
 
 4. Optionally, copy the script to a directory in your `$PATH` for easier access:
 
-    ```$
-    cp timecard.py /usr/local/bin/timecard
-    ```$
+    ```
+    $ cp timecard.py /usr/local/bin/timecard
+    ```
 
 ## Usage
 
 ### Clock In
 
-```$
-timecard clock-in job_name
-```$
+```
+$ timecard clock-in job_name
+```
 
 ### Clock Out
-```$
-timecard clock-out job_name
-```$
+```
+$ timecard clock-out job_name
+```
 
 ### Show Hours
-```$
-timecard show-hours job_name number_of_days
-```$
+```
+$ timecard show-hours job_name number_of_days
+```
 
 ## Configuration 
 
