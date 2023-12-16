@@ -1,0 +1,10 @@
+[Unit]
+Description=Timecard Inhibitor
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/ryott/.config/scripts/timecard-inhibitor
+
+[Install]
+WantedBy=default.target
+
